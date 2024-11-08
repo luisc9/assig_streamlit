@@ -1,0 +1,4 @@
+Example of valid queries
+
+SELECT data.home_team FROM data WHERE data.minute < 10
+
