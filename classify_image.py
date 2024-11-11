@@ -14,6 +14,7 @@ def classify_image(image):
     img = np.expand_dims(img, axis=0)
     img = preprocess_input(img)
     img = tf.keras.preprocessing.image.smart_resize(img, size=(224, 224))
+    img = img[:, :, :, :3]
     preds = model.predict(img)
 
     _, class_name, pred_probability = decode_predictions(preds, top=1)[0][0]
@@ -25,13 +26,18 @@ def classify_image(image):
 
 # Upload the image
 st.title("Image Classification")
-uploaded_file = .....
+uploaded_file = st.file_uploader("Upload an image file... ", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     # Open the image file
+    image = Image.open(uploaded_file)
     
     # Show the image in the UI
+    st.image(image, "Uploaded image", use_container_width=True)
     
     # Make the predictions
+    predicted_name, probability = classify_image(image)
 
     # Print the predictions in the UI
+    st.write(f"Predicted animal = {predicted_name}")
+    st.write(f"Probability = {probability}")
