@@ -26,6 +26,7 @@ def classify_image(image):
 
 # Upload the image
 st.title("Image Classification")
+st.write("This webapp takes a dog image and classifies it: it provides a classification and a probability, using the tensorflow, keras and resnet50 libraries and model to predict")
 uploaded_file = st.file_uploader("Upload an image file... ", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
